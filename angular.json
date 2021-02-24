@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "segiir"
+    }
+  },
+  "defaultProject": "segiir",
+  "cli": {
+    "analytics": "4cc745b3-5ff0-4f2b-8e38-e8f80bc5fe2f"
+  }
 }
