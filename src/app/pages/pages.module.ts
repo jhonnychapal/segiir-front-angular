@@ -8,6 +8,8 @@ import { AboutComponent } from './about/about.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { UsersComponent } from './users/users.component';
 import { PagesComponent } from './pages.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -18,6 +20,7 @@ import { PagesComponent } from './pages.component';
     ProjectsComponent,
     UsersComponent,
     PagesComponent,
+    PerfilComponent,
   ],
   exports: [
     DashboardComponent,
@@ -29,7 +32,8 @@ import { PagesComponent } from './pages.component';
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ]
 })
 export class PagesModule { }

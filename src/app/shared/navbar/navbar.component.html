@@ -6,11 +6,11 @@
     </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Inicio<span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/about" routerLinkActive="active">Acerca de</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/about">Acerca de</a>
+                    <a class="nav-link" routerLink="./perfil" routerLinkActive="active">Perfil</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
@@ -19,10 +19,10 @@
                     Proyectos
                     </a>
                     <div class="dropdown-menu animate__fadeIn" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item">Usuario: {{usuario.nombre}} {{usuario.apellido}} </a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/projects">Todos los proyectos</a>
                         <a class="dropdown-item" href="/projects/add">Nuevo proyecto</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/users/logout">Cerrar sesión</a>
                     </div>
                 </li>
                 <li class="nav-item">

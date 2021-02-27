@@ -8,6 +8,7 @@ import { RegisterForm } from '../Interfaces/register-form.interface';
 import { LoginForm } from '../Interfaces/login-form.interface';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { Usuario } from '../models/usuario.model';
 
 const base_url = environment.base_url;
 
@@ -16,27 +17,39 @@ const base_url = environment.base_url;
 })
 export class UsuarioService {
 
+  public usuario: Usuario;
+
   constructor(
     private http: HttpClient,
     private router: Router
   ) { }
 
-  logout(){
+  get token(): string{
+    return localStorage.getItem('token') || '';
+  }
+
+  get uid(): string{
+    return this.usuario.uid || '';
+  }
+
+  logout(): void{
     localStorage.removeItem('token');
     this.router.navigateByUrl('/login');
   }
 
   validarToken(): Observable<boolean>{
-    const token = localStorage.getItem('token') || '';
     return this.http.get(`${ base_url }/login/renew`, {
       headers: {
-        'xtoken': token
+        'xtoken': this.token
       }
     }).pipe(
-      tap((resp: any) => {
+      map((resp: any) => {
+        console.log(resp);
+        const { nombre, apellido, email, estado, admin, uid } = resp.usuario;
+        this.usuario = new Usuario( nombre, apellido, email, estado, admin, '', uid );
         localStorage.setItem('token', resp.token);
+        return true;
       }),
-      map( resp => true),
       catchError(error => of(false) )
     );
   }
@@ -48,6 +61,22 @@ export class UsuarioService {
         localStorage.setItem('token', resp.token);
       })
     );
+  }
+
+  actualizarPerfil(data: {nombre: string, apellido: string, email: string, admin: boolean, estado: boolean}): any{
+
+    data = {
+      ...data,
+      admin: this.usuario.admin,
+      estado: this.usuario.estado
+    };
+
+    return this.http.put(`${ base_url }/usuarios/${ this.uid }`, data, {
+      headers: {
+        'xtoken': this.token
+      }
+    });
+
   }
 
   login( formData: LoginForm ): any{
