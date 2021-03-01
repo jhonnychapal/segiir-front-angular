@@ -1,0 +1,105 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <input type="text" class="form-control" placeholder="Buscar usuario..." (keyup)="buscar(txtTermino.value)" #txtTermino>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="cargando">
+    <div class="col-12">
+        <div class="alert alert-info text-center">
+            <h4 class="alert-heading">Cargando</h4>
+            <i class="fa fa-spin fa-refresh fa-2x"></i>
+            <p class="mb-0">Por favor espere</p>
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="!cargando">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-subtitle">Usuarios registrados en SeGIIR</h5>
+
+                <!-- This example requires Tailwind CSS v2.0+ -->
+                <div class="flex flex-col">
+                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Nombre y correo electrónico
+                                            </th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Rol
+                                            </th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w100">
+                                                Estado
+                                            </th>
+                                            <th scope="col" class="relative px-6 py-3 w100">
+                                                <span class="sr-only">Editar</span>
+                                            </th>
+                                            <th scope="col" class="relative px-6 py-3 w100">
+                                                <span class="sr-only">Eliminar</span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngFor="let usuario of usuarios" class="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium text-gray-900">
+                                                            {{usuario.nombre}} {{usuario.apellido}}
+                                                        </div>
+                                                        <div class="text-sm text-gray-500">
+                                                            {{usuario.email}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <!-- <div class="text-sm text-gray-900">{{usuario.admin}}</div> -->
+                                                <select class="form-control" [(ngModel)]="usuario.admin" (change)="cambiarRol(usuario)">
+                                                    <option  value=true>Admin</option>
+                                                    <option  value=false>Usuario</option>
+                                                </select>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span *ngIf="usuario.estado" class="px-3 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                    Activo
+                                                </span>
+                                                <span *ngIf="!usuario.estado" class="px-3 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                    Inactivo
+                                                </span>
+                                            </td>
+
+                                            <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                                                <a class="text-indigo-600 hover:text-indigo-900 cursor" (click)="eliminarUsuario(usuario)">Eliminar</a>
+                                            </td>
+                                        </tr>
+
+                                        <!-- More items... -->
+                                    </tbody>
+
+                                </table>
+                            </div>
+                            <div *ngIf="txtTermino.value.length === 0">
+                                <button (click)="cambiarPagina(-5)" class="btn btn-outline-secondary mt-3">Anterior</button> &nbsp;
+                                <button (click)="cambiarPagina(5)" class="btn btn-outline-secondary mt-3">Siguiente</button> &nbsp;
+                                <h4 class="card-title"> Total de usuarios ({{ totalUsuarios }})</h4>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

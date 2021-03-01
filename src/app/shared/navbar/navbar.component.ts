@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UsuarioService } from '../../services/usuario.service';
 import { Usuario } from '../../models/usuario.model';
+import { NavbarService } from '../../services/navbar.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,11 +11,14 @@ import { Usuario } from '../../models/usuario.model';
 })
 export class NavbarComponent {
 
+  menuItems: any[];
   public usuario: Usuario;
 
   constructor(
+    private navbarService: NavbarService,
     private usuarioService: UsuarioService
   ) {
+    this.menuItems = navbarService.menu;
     this.usuario = usuarioService.usuario;
   }
 

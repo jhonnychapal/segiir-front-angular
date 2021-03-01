@@ -5,11 +5,12 @@ import { RouterModule } from '@angular/router';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AboutComponent } from './about/about.component';
-import { ProjectsComponent } from './projects/projects.component';
-import { UsersComponent } from './users/users.component';
 import { PagesComponent } from './pages.component';
 import { PerfilComponent } from './perfil/perfil.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
+import { ProyectosComponent } from './mantenimientos/proyectos/proyectos.component';
+import { NuevoProyectoComponent } from './nuevo-proyecto/nuevo-proyecto.component';
 
 
 
@@ -17,23 +18,25 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     DashboardComponent,
     AboutComponent,
-    ProjectsComponent,
-    UsersComponent,
     PagesComponent,
     PerfilComponent,
+    UsuariosComponent,
+    ProyectosComponent,
+    NuevoProyectoComponent,
   ],
   exports: [
     DashboardComponent,
     AboutComponent,
-    ProjectsComponent,
-    UsersComponent,
+    ProyectosComponent,
+    UsuariosComponent,
     PagesComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class PagesModule { }

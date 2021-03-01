@@ -5,9 +5,10 @@ import { AuthGuard } from '../guards/auth.guard';
 
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProjectsComponent } from './projects/projects.component';
-import { UsersComponent } from './users/users.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
+import { ProyectosComponent } from './mantenimientos/proyectos/proyectos.component';
+import { NuevoProyectoComponent } from './nuevo-proyecto/nuevo-proyecto.component';
 
 const routes: Routes = [
     {
@@ -16,9 +17,12 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         children: [
           { path: '', component: DashboardComponent },
-          { path: 'projects', component: ProjectsComponent },
-          { path: 'users', component: UsersComponent },
+          { path: 'nuevo-proyecto', component: NuevoProyectoComponent },
           { path: 'perfil', component: PerfilComponent },
+
+          //  Mantenimientos
+          { path: 'usuarios', component: UsuariosComponent },
+          { path: 'proyectos', component: ProyectosComponent },
         ]
       }
     ];

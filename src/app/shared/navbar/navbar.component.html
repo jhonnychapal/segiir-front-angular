@@ -10,19 +10,18 @@
                     <a class="nav-link" routerLink="/about" routerLinkActive="active">Acerca de</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="./perfil" routerLinkActive="active">Perfil</a>
+                    <a class="nav-link" routerLink="./perfil" routerLinkActive="active">Perfil de {{usuario.nombre}} {{usuario.apellido}}</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
+                <li *ngFor="let item of menuItems" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Proyectos
+                    {{ item.titulo }}
                     </a>
                     <div class="dropdown-menu animate__fadeIn" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item">Usuario: {{usuario.nombre}} {{usuario.apellido}} </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/projects">Todos los proyectos</a>
-                        <a class="dropdown-item" href="/projects/add">Nuevo proyecto</a>
+                        <li *ngFor="let subMenuItem of item.submenu">
+                            <a class="dropdown-item" [routerLink]="subMenuItem.url">{{subMenuItem.titulo }}</a>
+                        </li>
                     </div>
                 </li>
                 <li class="nav-item">
