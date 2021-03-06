@@ -10,7 +10,8 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
 import { ProyectosComponent } from './mantenimientos/proyectos/proyectos.component';
-import { NuevoProyectoComponent } from './nuevo-proyecto/nuevo-proyecto.component';
+import { ProyectoComponent } from './mantenimientos/proyectos/proyecto.component';
+import { ProyectoDetallesComponent } from './mantenimientos/proyectos/proyecto-detalles.component';
 
 
 
@@ -22,7 +23,8 @@ import { NuevoProyectoComponent } from './nuevo-proyecto/nuevo-proyecto.componen
     PerfilComponent,
     UsuariosComponent,
     ProyectosComponent,
-    NuevoProyectoComponent,
+    ProyectoComponent,
+    ProyectoDetallesComponent,
   ],
   exports: [
     DashboardComponent,
@@ -30,6 +32,7 @@ import { NuevoProyectoComponent } from './nuevo-proyecto/nuevo-proyecto.componen
     ProyectosComponent,
     UsuariosComponent,
     PagesComponent,
+    ProyectoComponent,
   ],
   imports: [
     CommonModule,

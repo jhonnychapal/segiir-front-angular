@@ -11,7 +11,7 @@ export class NavbarService {
       // icono: 'mdi mdi-folder-lock-open',
       submenu: [
         { titulo: 'Todos los poyectos', url: 'proyectos' },
-        { titulo: 'Nuevo proyecto', url: 'nuevo-proyecto' },
+        { titulo: 'Nuevo proyecto', url: 'proyecto-nuevo' },
       ]
     },
     {

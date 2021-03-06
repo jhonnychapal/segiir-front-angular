@@ -21,6 +21,7 @@ export class BusquedasService {
   get headers(): any{
     return {
       headers: {
+        // tslint:disable-next-line: object-literal-key-quotes
         'xtoken': this.token
       }
     };

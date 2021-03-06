@@ -8,7 +8,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
 import { ProyectosComponent } from './mantenimientos/proyectos/proyectos.component';
-import { NuevoProyectoComponent } from './nuevo-proyecto/nuevo-proyecto.component';
+import { ProyectoComponent } from './mantenimientos/proyectos/proyecto.component';
+import { ProyectoDetallesComponent } from './mantenimientos/proyectos/proyecto-detalles.component';
 
 const routes: Routes = [
     {
@@ -17,12 +18,13 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         children: [
           { path: '', component: DashboardComponent },
-          { path: 'nuevo-proyecto', component: NuevoProyectoComponent },
+          { path: 'proyecto-nuevo', component: ProyectoComponent },
           { path: 'perfil', component: PerfilComponent },
 
           //  Mantenimientos
           { path: 'usuarios', component: UsuariosComponent },
           { path: 'proyectos', component: ProyectosComponent },
+          { path: 'proyecto/:id', component: ProyectoDetallesComponent },
         ]
       }
     ];
