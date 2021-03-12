@@ -24,7 +24,7 @@ const routes: Routes = [
           //  Mantenimientos
           { path: 'usuarios', component: UsuariosComponent },
           { path: 'proyectos', component: ProyectosComponent },
-          { path: 'proyecto/:id', component: ProyectoDetallesComponent },
+          { path: 'proyectos/:id', component: ProyectoDetallesComponent },
         ]
       }
     ];

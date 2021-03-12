@@ -25,7 +25,7 @@
             <div class="card-body">
                 <h5 class="card-title">Descripción:</h5>
                 <p class="card-text">{{proyecto.descripcion}}</p>
-                <a [routerLink]="['/dashboard/proyecto', proyecto._id]" class="btn btn-primary mt-2">Detalles del proyecto</a> &nbsp;
+                <a [routerLink]="['/dashboard/proyectos', proyecto._id]" class="btn btn-primary mt-2">Detalles del proyecto</a> &nbsp;
                 <button class="btn btn-danger mt-2" (click)="borrarProyecto(proyecto)">Eliminar proyecto</button>
             </div>
         </div>

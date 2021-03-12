@@ -7,3 +7,9 @@
 .w100 {
     width: 100px;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.x-accordion-heading .x-accordion-toggle {
+    background-color: #ff0000;
+}

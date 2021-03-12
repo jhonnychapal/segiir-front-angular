@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatExpansionModule } from '@angular/material/expansion';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AboutComponent } from './about/about.component';
@@ -33,13 +36,17 @@ import { ProyectoDetallesComponent } from './mantenimientos/proyectos/proyecto-d
     UsuariosComponent,
     PagesComponent,
     ProyectoComponent,
+    
   ],
   imports: [
     CommonModule,
     SharedModule,
     RouterModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatSliderModule,
+    MatExpansionModule,
+    BrowserAnimationsModule
   ]
 })
 export class PagesModule { }

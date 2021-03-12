@@ -1,1 +1,55 @@
-<p>proyecto-detalles works!</p>
+<div class="col-md-6 mx-auto" >
+    <div class="card" style="border-color: black;" >
+        <div class="card-header"  >
+            <strong>
+                <h1>INFORMACIÓN DEL PROYECTO</h1>
+            </strong>
+        </div>
+        <div class="card-body" >
+            <form [formGroup]="proyectoForm" (submit)="guardarProyecto()" >
+                <div class="form-group" >   
+                        Nombre:
+                    <input type="text" name="nombre" id="nombre" class="form-control" formControlName="nombre" 
+                    autofocus value="{{proyectoForm}}">
+                </div > 
+                <div class="form-group" *ngIf="directorAux">
+                    Director:
+                    <p class="form-control" style="background-color: rgb(162, 201, 202); opacity: unset;">{{ directorAux.nombre + " " + directorAux.apellido}}</p>
+                </div >
+                <div class="form-group">
+                    Descripcion:
+                    <input type="l" name="met" id="descripcion"  class="form-control" formControlName="descripcion" autofocus value="{{proyectoForm}}">
+                </div >
+                <div>
+                    <div class="form-group" >Actividades
+                        <div class="form-group" *ngFor="let actividad of actividadesAux; index as iactividad" >
+                            <mat-expansion-panel hideToggle>
+                                <mat-expansion-panel-header > 
+                                  <mat-panel-title >
+                                    {{actividad.nombre}}
+                                  </mat-panel-title>
+                                </mat-expansion-panel-header >
+                                Tareas
+                                <div class="form-group" *ngFor="let tarea of actividad.tarea; index as itarea">
+                                    <label>
+                                        <div class="form-group" *ngIf="tarea.realizada; else tareanorealizada">
+                                            <input type="checkbox" value="{{tarea.nombre}}" checked (change)="onCheckChange($event)">
+                                            {{tarea.nombre}}
+                                        </div>
+                                        <ng-template #tareanorealizada>
+                                            <input type="checkbox" value="{{tarea.nombre}}" (change)="onCheckChange($event)">
+                                            {{tarea.nombre}}
+                                          </ng-template>
+                                    </label>
+                                </div>
+                            </mat-expansion-panel>
+                        </div >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block" [disabled]="proyectoForm.invalid" type="submit" >Guardar</button>
+                </div>
+            </form>         
+        </div>
+    </div>
+</div>

@@ -18,9 +18,15 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <div class="form-control" *ngFor="let usuario of usuarios">
-                        <input formControlName="met" type="radio" value="{{usuario.uid}}"> {{usuario.nombre}}
-                    </div>
+                    <div *ngFor="let usuario of usuarios; let i=index">
+                        <label>
+                          <input type="checkbox" value={{usuario.uid}} (change)="onCheckChange($event)">
+                          {{usuario.nombre}}
+                        </label>
+                      </div>
+                    <!-- <div class="form-control" *ngFor="let usuario of usuarios">
+                        <input formControlName="met" type="radio" value="{{usuario.uid}}"><label for="{{usuario.uid}}">{{usuario.nombre}}</label>
+                    </div> -->
                 </div>
                 <div class="form-group">
                     <button class="btn btn-primary btn-block" type="submit" [disabled]="proyectoForm.invalid">Crear proyecto</button>

@@ -97,6 +97,11 @@ export class UsuarioService {
     return this.http.get<CargarUsuario>(url, this.headers);
   }
 
+  cargarUsuariosList():any{
+    const url= `${ base_url }/usuarios/list`
+    return this.http.get<CargarUsuario>(url, this.headers);
+  }
+
   eliminarUsuario(usuario: Usuario): any{
     const url = `${ base_url }/usuarios/${ usuario.uid }`;
     return this.http.delete(url, this.headers);

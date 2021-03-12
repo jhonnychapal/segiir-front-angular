@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { PagesModule } from './pages/pages.module';
 import { AuthModule } from './auth/auth.module';
 
+
 import { AppComponent } from './app.component';
 import { NopagefoundComponent } from './nopagefound/nopagefound.component';
 
@@ -16,7 +17,7 @@ import { NopagefoundComponent } from './nopagefound/nopagefound.component';
     BrowserModule,
     AppRoutingModule,
     PagesModule,
-    AuthModule
+    AuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
