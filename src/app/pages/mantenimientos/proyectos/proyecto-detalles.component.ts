@@ -24,6 +24,7 @@ export class ProyectoDetallesComponent implements OnInit {
   public proyectoForm: FormGroup;
   public actividadForm: FormGroup;
   public metForm: FormGroup;
+  public cargando = true;
 
   public usuarios: Usuario[];
   public actividadesAux: Actividad[];
@@ -31,6 +32,7 @@ export class ProyectoDetallesComponent implements OnInit {
   public nombreAux;
   public directorAux: Usuario;
   public descripcionAux;
+  public banderaDirector = false;
 
   constructor(
     private fb: FormBuilder,
@@ -43,8 +45,8 @@ export class ProyectoDetallesComponent implements OnInit {
   ngOnInit(): void {
     // tslint:disable-next-line: deprecation
     this.proyectoForm = this.fb.group({
-      nombre: ['', Validators.required],
-      descripcion: ['', Validators.required],
+      nombre: ["", Validators.required],
+      descripcion: ["", Validators.required],
       //director: this.fb.array([]),//['', Validators.required],
       met: this.fb.array([]),
       actividades: this.fb.array([]),
@@ -57,11 +59,12 @@ export class ProyectoDetallesComponent implements OnInit {
 
   cargarProyecto(id: string): any{
     this.actividadesAux = [];
+    this.cargando = true;
     this.proyectoService.obtenerProyectoPorId(id)
         .subscribe((proyecto:Proyecto) => {
+          this.cargando = false;
           this.metAux = proyecto.met;
-          this.actividadesAux = proyecto.actividades;
-          console.log(proyecto)   
+          this.actividadesAux = proyecto.actividades; 
           this.directorAux = proyecto.director;      
           this.proyectoForm.patchValue({
             _id : id,
@@ -71,6 +74,7 @@ export class ProyectoDetallesComponent implements OnInit {
           this.CargarActividades();
           this.CargarMet();
           this.CargarDirector();
+          this.ObtenerIdUsuario();
         });
   }
 
@@ -115,7 +119,13 @@ export class ProyectoDetallesComponent implements OnInit {
       apellido: [this.directorAux.apellido, Validators.required],
     })
     this.proyectoForm.addControl("director", director)
-    console.log(this.proyectoForm.value)
+  }
+
+  ObtenerIdUsuario(){
+    let usuario = JSON.parse(localStorage.getItem('usuario'));
+    if(usuario.uid == this.directorAux._id){
+      this.banderaDirector = true;
+    }
   }
     
   get met(): FormArray{
@@ -163,14 +173,14 @@ export class ProyectoDetallesComponent implements OnInit {
   }
 
   guardarProyecto(): any{
+    this.cargando = true;
     const proyecto: Proyecto = this.proyectoForm.value;
     const { nombre } = this.proyectoForm.value;
     this.proyectoService.actualizarProyecto(this.proyectoForm.value)
         .subscribe((resp: any) => {
-          console.log(resp);
+          this.cargando = false;
           Swal.fire('Proyecto Guardado', `${nombre} guardado correctamente`, 'success');
           this.router.navigateByUrl('/dashboard/proyectos');
         });
-    console.log(this.proyectoForm.value)
   }
 }

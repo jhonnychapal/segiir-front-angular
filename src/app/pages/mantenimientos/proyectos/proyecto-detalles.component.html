@@ -1,11 +1,32 @@
-<div class="col-md-6 mx-auto" >
+<style>
+    mat-expansion-panel-header {
+    background-color: rgba(78, 141, 170, 0.856);
+    }
+    .mat-expansion-panel-header.mat-expanded:hover {
+        background: rgba(57, 226, 127, 0.76);
+    }
+    
+</style>
+<br>
+<p align="center" style="font-size:33px; color: white;" >DETALLES DEL PROYECTO</p>
+<br>
+<div class="row" *ngIf="cargando">
+    <div class="col-12">
+        <div class="alert alert-info text-center">
+            <h4 class="alert-heading">Guardando</h4>
+            <i class="fa fa-spin fa-refresh fa-2x"></i>
+            <p class="mb-0">Por favor espere</p>
+        </div>
+    </div>
+</div>
+<div class="col-md-6 mx-auto" *ngIf="!cargando">
     <div class="card" style="border-color: black;" >
         <div class="card-header"  >
             <strong>
                 <h1>INFORMACIÓN DEL PROYECTO</h1>
             </strong>
         </div>
-        <div class="card-body" >
+        <div class="card-body formulario"  >
             <form [formGroup]="proyectoForm" (submit)="guardarProyecto()" >
                 <div class="form-group" >   
                         Nombre:
@@ -23,13 +44,13 @@
                 <div>
                     <div class="form-group" >Actividades
                         <div class="form-group" *ngFor="let actividad of actividadesAux; index as iactividad" >
-                            <mat-expansion-panel hideToggle>
-                                <mat-expansion-panel-header > 
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header> 
                                   <mat-panel-title >
                                     {{actividad.nombre}}
                                   </mat-panel-title>
                                 </mat-expansion-panel-header >
-                                Tareas
+                                <div style="height: 40px; display: flex; align-items: center;"><b>Tareas</b></div>
                                 <div class="form-group" *ngFor="let tarea of actividad.tarea; index as itarea">
                                     <label>
                                         <div class="form-group" *ngIf="tarea.realizada; else tareanorealizada">
@@ -39,14 +60,14 @@
                                         <ng-template #tareanorealizada>
                                             <input type="checkbox" value="{{tarea.nombre}}" (change)="onCheckChange($event)">
                                             {{tarea.nombre}}
-                                          </ng-template>
+                                        </ng-template>
                                     </label>
                                 </div>
                             </mat-expansion-panel>
                         </div >
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" *ngIf="banderaDirector">
                     <button class="btn btn-primary btn-block" [disabled]="proyectoForm.invalid" type="submit" >Guardar</button>
                 </div>
             </form>         

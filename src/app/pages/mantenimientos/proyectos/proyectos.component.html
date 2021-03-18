@@ -1,5 +1,9 @@
-<div class="row">
-    <div class="col-12">
+<br>
+<p align="center" style="font-size:33px; color: white;" >PROYECTOS</p>
+<br>
+
+<div class="row" style="padding-left: 10%; padding-right: 10%;">
+    <div class="col-sm-6" >
         <div class="card">
             <div class="card-body">
                 <input type="text" class="form-control" placeholder="Buscar proyecto..." #txtTermino (keyup)="buscar(txtTermino.value)">
@@ -18,9 +22,9 @@
     </div>
 </div>
 
-<div class="row" *ngIf="!cargando">
-    <div class="col-sm-5 m-1" *ngFor="let proyecto of proyectos">
-        <div class="card">
+<div class="row" *ngIf="!cargando" style="padding-left: 10%; padding-right: 10%;">
+    <div class="col-sm-6" *ngFor="let proyecto of proyectos" style="padding-top:10px;">
+        <div class="card" >
             <h5 class="card-header">{{proyecto.nombre}}</h5>
             <div class="card-body">
                 <h5 class="card-title">Descripción:</h5>
@@ -30,5 +34,4 @@
             </div>
         </div>
     </div>
-
 </div>

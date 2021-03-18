@@ -32,7 +32,6 @@ export class ProyectosComponent implements OnInit {
         this.cargando = false;
         this.proyectos = proyectos;
         this.proyectosTemp = proyectos;
-        console.log(proyectos);
       });
   }
 

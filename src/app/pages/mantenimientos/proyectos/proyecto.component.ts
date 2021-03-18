@@ -18,6 +18,7 @@ export class ProyectoComponent implements OnInit {
   public proyectoForm: FormGroup;
   public met: FormControl;
   public usuarios: Usuario[];
+  public cargando = false;
 
   constructor(
     private fb: FormBuilder,
@@ -44,17 +45,17 @@ export class ProyectoComponent implements OnInit {
   cargarUsuarios(): any{
     this.usuarioService.cargarUsuariosList()
         .subscribe((res: any) => {
-          console.log(res.usuarios);
           this.usuarios = res.usuarios;
         });
         
   }
 
   guardarProyecto(): any{
+    this.cargando= true;
     const { nombre } = this.proyectoForm.value;
     const proyectoCreado = this.proyectoService.crearProyecto(this.proyectoForm.value)
         .subscribe((resp: any) => {
-          console.log(resp);
+          this.cargando = false;
           Swal.fire('Proyecto creado', `${nombre} creado correctamente`, 'success');
           this.router.navigateByUrl('/dashboard/proyectos');
         });
@@ -82,6 +83,5 @@ export class ProyectoComponent implements OnInit {
         i++;
       });
     }
-    console.log(this.proyectoForm.value)
   }
 }

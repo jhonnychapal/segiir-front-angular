@@ -4,7 +4,8 @@ import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatExpansionModule } from '@angular/material/expansion';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AboutComponent } from './about/about.component';
@@ -15,6 +16,10 @@ import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component'
 import { ProyectosComponent } from './mantenimientos/proyectos/proyectos.component';
 import { ProyectoComponent } from './mantenimientos/proyectos/proyecto.component';
 import { ProyectoDetallesComponent } from './mantenimientos/proyectos/proyecto-detalles.component';
+import { PracticaComponent } from './practica/practica.component';
+import { EjemploComponent } from './ejemplo/ejemplo.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 
 
@@ -28,6 +33,8 @@ import { ProyectoDetallesComponent } from './mantenimientos/proyectos/proyecto-d
     ProyectosComponent,
     ProyectoComponent,
     ProyectoDetallesComponent,
+    PracticaComponent,
+    EjemploComponent,
   ],
   exports: [
     DashboardComponent,
@@ -46,7 +53,10 @@ import { ProyectoDetallesComponent } from './mantenimientos/proyectos/proyecto-d
     FormsModule,
     MatSliderModule,
     MatExpansionModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatGridListModule,
+    MatDialogModule,
+    PdfViewerModule
   ]
 })
 export class PagesModule { }

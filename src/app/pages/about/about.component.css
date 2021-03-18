@@ -1,0 +1,40 @@
+p {
+    font-family: 'Josefin Sans', sans-serif;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 400;
+    margin-top: 0px;
+    text-align: center;
+}
+
+.titulo{
+    text-decoration: underline;
+}
+
+.parrafo{
+    margin-bottom: 3px;
+}
+
+a {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    text-transform: uppercase;
+    background: transparent;
+    color: #c9c9c9;
+    border: 2px solid #c9c9c9;
+    display: block;
+    width: 140px;
+    margin: auto;
+    margin-top: 10px;
+    padding: 10px 25px 10px 27px;
+    font-weight: 700;
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all;
+
+  }
+a:hover {
+    color: #ffab00;
+    border-color: #ffab00;
+  }
+  

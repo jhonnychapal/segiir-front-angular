@@ -1,16 +1,18 @@
 <div class="background">
-    <div class="row">
-        <div class="col-md-4 mx-auto">
-            <div class="card mt-4 text-center">
+    <div class="row" style="margin: 0px;" >
+        <div class="col-md-4 mx-auto" style="padding:25px;">
+            <div class="card mt-4 text-center" style="margin-top: 25px;margin-bottom: 25px;">
                 <div class="card-header">
                     <h1>Iniciar sesión</h1>
                 </div>
-                <img src="../../../assets/images/giir.jpg" class="rounded-circle mx-auto d-block m-4 logo " alt="">
+                <img src="../../../assets/images/segiir-icon.png" class="rounded-circle mx-auto d-block m-2 logo " alt="">
                 <div class="card-body">
                     <form (submit)="login()" id="loginform" autocomplete="off" [formGroup]="loginForm">
+                        <p class="etiqueta">Email:</p>
                         <div class="form-group">
                             <input type="email" class="form-control" name="email" placeholder="Correo electrónico" formControlName="email" autofocus>
                         </div>
+                        <p class="etiqueta">Contraseña:</p>
                         <div class="form-group">
                             <input type="password" class="form-control" name="password" placeholder="Contraseña" formControlName="password">
                         </div>
@@ -26,3 +28,4 @@
         </div>
     </div>
 </div>
+<app-footer></app-footer>
