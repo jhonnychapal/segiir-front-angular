@@ -1,5 +1,9 @@
-<div class="row">
-    <div class="col-12">
+<br>
+<p align="center" style="font-size:33px; color: white;" >PROYECTOS</p>
+<br>
+
+<div class="row" style="padding-left: 10%; padding-right: 10%;">
+    <div class="col-sm-6" >
         <div class="card">
             <div class="card-body">
                 <input type="text" class="form-control" placeholder="Buscar proyecto..." #txtTermino (keyup)="buscar(txtTermino.value)">
@@ -10,25 +14,26 @@
 
 <div class="row" *ngIf="cargando">
     <div class="col-12">
-        <div class="alert alert-info text-center">
-            <h4 class="alert-heading">Cargando</h4>
-            <i class="fa fa-spin fa-refresh fa-2x"></i>
-            <p class="mb-0">Por favor espere</p>
+        <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
         </div>
     </div>
 </div>
 
-<div class="row" *ngIf="!cargando">
-    <div class="col-sm-5 m-1" *ngFor="let proyecto of proyectos">
-        <div class="card">
+<div class="row" *ngIf="!cargando" style="padding-left: 10%; padding-right: 10%;">
+    <div class="col-sm-6" *ngFor="let proyecto of proyectos" style="padding-top:10px;">
+        <div class="card" >
             <h5 class="card-header">{{proyecto.nombre}}</h5>
             <div class="card-body">
                 <h5 class="card-title">Descripción:</h5>
                 <p class="card-text">{{proyecto.descripcion}}</p>
-                <a [routerLink]="['/dashboard/proyecto', proyecto._id]" class="btn btn-primary mt-2">Detalles del proyecto</a> &nbsp;
-                <button class="btn btn-danger mt-2" (click)="borrarProyecto(proyecto)">Eliminar proyecto</button>
+                <a [routerLink]="['/dashboard/proyectos', proyecto._id]" class="btn btn-primary mt-2">Detalles del proyecto</a> &nbsp;
+                <button *ngIf="banderaAdmin"  class="btn btn-danger mt-2" (click)="borrarProyecto(proyecto)">Eliminar proyecto</button>
             </div>
         </div>
     </div>
-
 </div>

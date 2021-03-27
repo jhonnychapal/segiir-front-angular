@@ -15,6 +15,7 @@ export class ProyectosComponent implements OnInit {
   public proyectos: Proyecto[] = [];
   public proyectosTemp: Proyecto[] = [];
   public cargando = true;
+  public banderaAdmin = false;
 
   constructor(
     private proyectoService: ProyectoService,
@@ -32,8 +33,9 @@ export class ProyectosComponent implements OnInit {
         this.cargando = false;
         this.proyectos = proyectos;
         this.proyectosTemp = proyectos;
-        console.log(proyectos);
       });
+    let usuario = JSON.parse(localStorage.getItem('usuario'));
+    this.banderaAdmin = usuario.admin;
   }
 
   buscar(termino: string): any {

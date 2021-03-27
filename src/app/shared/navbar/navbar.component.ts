@@ -15,10 +15,10 @@ export class NavbarComponent {
   public usuario: Usuario;
 
   constructor(
-    private navbarService: NavbarService,
+    public navbarService: NavbarService,
     private usuarioService: UsuarioService
   ) {
-    this.menuItems = navbarService.menu;
+    //this.menuItems = navbarService.menu;
     this.usuario = usuarioService.usuario;
   }
 

@@ -1,3 +1,6 @@
+<br>
+<p align="center" style="font-size:33px; color: white;" >DATOS PERSONALES</p>
+<br>
 <div class="row">
     <div class="col-md-4 mx-auto">
         <div class="card">
@@ -7,12 +10,15 @@
             <div class="card-body">
                 <form [formGroup]="perfilForm" (submit)="actualizarPerfil()">
                     <div class="form-group">
+                        Nombre:
                         <input type="text" class="form-control" name="nombre" placeholder="Nombre usuario" formControlName="nombre">
                     </div>
                     <div class="form-group">
+                        Apellido:
                         <input type="text" class="form-control" name="apellido" placeholder="Apellido usuario" formControlName="apellido">
                     </div>
                     <div class="form-group">
+                        Email:
                         <input type="email" class="form-control" name="email" placeholder="Correo electrónico" formControlName="email">
                     </div>
 
@@ -24,3 +30,4 @@
         </div>
     </div>
 </div>
+<br><br>

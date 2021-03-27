@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavbarService} from '../services/navbar.service'
 
 @Component({
   selector: 'app-pages',
@@ -8,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PagesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private navbarService: NavbarService ) { }
 
   ngOnInit(): void {
+    this.navbarService.cargarMenu();
   }
 
 }

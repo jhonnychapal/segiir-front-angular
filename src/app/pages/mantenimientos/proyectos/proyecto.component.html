@@ -1,26 +1,50 @@
-<div class="col-md-4 mx-auto">
+<br>
+<p align="center" style="font-size:33px; color: white;" >CREAR PROYECTO</p>
+<br>
+<div class="row" *ngIf="cargando">
+    <div class="col-12">
+        <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 mx-auto" *ngIf="!cargando">
     <div class="card">
         <div class="card-header">
-            <h1>Detalles proyecto</h1>
+            <b><h1>Detalles proyecto</h1></b>
         </div>
-        <div class="card-body">
+        <div class="card-body formulario">
             <form [formGroup]="proyectoForm" (submit)="guardarProyecto()">
                 <div class="form-group">
+                    Nombre:
                     <input type="text" name="name" class="form-control" placeholder="Nombre" formControlName="nombre" autofocus value="{{proyectoForm}}">
                 </div>
                 <div class="form-group">
+                    Descripción:
                     <textarea name="description" class="form-control" placeholder="Descripción" formControlName="descripcion"></textarea>
                 </div>
                 <div class="form-group">
+                    Director:
                     <select class="form-control" formControlName="director">
                         <option value="">Seleccione director</option>
                         <option *ngFor="let usuario of usuarios" [value]="usuario.uid">{{usuario.nombre}} {{usuario.apellido }}</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <div class="form-control" *ngFor="let usuario of usuarios">
-                        <input formControlName="met" type="radio" value="{{usuario.uid}}"> {{usuario.nombre}}
-                    </div>
+                    Seleccione los miembros del equipo de trabajo: <br><br>
+                    <div *ngFor="let usuario of usuarios; let i=index">
+                        <label>
+                          <input type="checkbox" value={{usuario.uid}} (change)="onCheckChange($event)">
+                          {{usuario.nombre}}
+                        </label>
+                      </div>
+                    <!-- <div class="form-control" *ngFor="let usuario of usuarios">
+                        <input formControlName="met" type="radio" value="{{usuario.uid}}"><label for="{{usuario.uid}}">{{usuario.nombre}}</label>
+                    </div> -->
                 </div>
                 <div class="form-group">
                     <button class="btn btn-primary btn-block" type="submit" [disabled]="proyectoForm.invalid">Crear proyecto</button>

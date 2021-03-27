@@ -10,6 +10,7 @@ import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { Usuario } from '../models/usuario.model';
 import { CargarUsuario } from '../Interfaces/cargar-usuarios.interface';
+import { getLocaleNumberSymbol } from '@angular/common';
 
 const base_url = environment.base_url;
 
@@ -33,6 +34,10 @@ export class UsuarioService {
     return this.usuario.uid || '';
   }
 
+  get admin(): boolean{
+    return this.usuario.admin || false;
+  }
+
   get headers(): any{
     return {
       headers: {
@@ -43,6 +48,8 @@ export class UsuarioService {
 
   logout(): void{
     localStorage.removeItem('token');
+    localStorage.removeItem('menu');
+    localStorage.removeItem('usuario');
     this.router.navigateByUrl('/login');
   }
 
@@ -56,7 +63,8 @@ export class UsuarioService {
         console.log(resp);
         const { nombre, apellido, email, estado, admin, uid } = resp.usuario;
         this.usuario = new Usuario( nombre, apellido, email, estado, admin, '', uid );
-        localStorage.setItem('token', resp.token);
+        //localStorage.setItem('token', resp.token);
+        this.guardarLocalStorage(resp.token, resp.menu, resp.usuario);
         return true;
       }),
       catchError(error => of(false) )
@@ -67,7 +75,8 @@ export class UsuarioService {
     return this.http.post(`${ base_url }/usuarios`, formData)
     .pipe(
       tap( (resp: any) => {
-        localStorage.setItem('token', resp.token);
+        //localStorage.setItem('token', resp.token);
+        this.guardarLocalStorage(resp.token, resp.menu, resp.usuario);
       })
     );
   }
@@ -87,13 +96,19 @@ export class UsuarioService {
     return this.http.post(`${ base_url }/login`, formData)
         .pipe(
           tap( (resp: any) => {
-            localStorage.setItem('token', resp.token);
+            //localStorage.setItem('token', resp.token);
+            this.guardarLocalStorage(resp.token, resp.menu, resp.usuario);
           })
         );
   }
 
-  cargarUsuarios(desde: number = 0): any{
+  cargarUsuarios(desde: number = 1): any{
     const url = `${ base_url }/usuarios?desde=${ desde }`;
+    return this.http.get<CargarUsuario>(url, this.headers);
+  }
+
+  cargarUsuariosList():any{
+    const url= `${ base_url }/usuarios/list`
     return this.http.get<CargarUsuario>(url, this.headers);
   }
 
@@ -106,6 +121,12 @@ export class UsuarioService {
 
     return this.http.put(`${ base_url }/usuarios/${ usuario.uid }`, usuario, this.headers);
 
+  }
+
+  guardarLocalStorage(token: string, menu:any, usuario:any){
+    localStorage.setItem('token', token);
+    localStorage.setItem('menu', JSON.stringify(menu));
+    localStorage.setItem('usuario', JSON.stringify(usuario));
   }
 
 }

@@ -61,6 +61,4 @@ export class ProyectoService {
     const url = `${ base_url }/proyectos/${ _id}`;
     return this.http.delete(url, this.headers );
   }
-
-
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { subscribeOn } from 'rxjs/operators';
 import { UsuarioService } from '../../../services/usuario.service';
 import { Usuario } from '../../../models/usuario.model';
@@ -16,7 +16,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ProyectoComponent implements OnInit {
 
   public proyectoForm: FormGroup;
+  public met: FormControl;
   public usuarios: Usuario[];
+  public cargando = false;
 
   constructor(
     private fb: FormBuilder,
@@ -29,30 +31,57 @@ export class ProyectoComponent implements OnInit {
   ngOnInit(): void {
 
     this.cargarUsuarios();
+    this.proyectoForm = new FormGroup({ 
+    });
     this.proyectoForm = this.fb.group({
       nombre: ['Proyecto', Validators.required],
       descripcion: ['Descripción', Validators.required],
       director: ['', Validators.required],
-      met: [['60379eb7cf007fdd581b2ec3', '60379eb7cf007fdd581b2ec3'], Validators.required],
+      met: new FormArray([], Validators.required),
+      //met: [[], Validators.required],
     });
-  }
+   }
 
   cargarUsuarios(): any{
-    this.usuarioService.cargarUsuarios()
+    this.usuarioService.cargarUsuariosList()
         .subscribe((res: any) => {
-          console.log(res.usuarios);
           this.usuarios = res.usuarios;
         });
+        
   }
 
   guardarProyecto(): any{
+    this.cargando= true;
     const { nombre } = this.proyectoForm.value;
     const proyectoCreado = this.proyectoService.crearProyecto(this.proyectoForm.value)
         .subscribe((resp: any) => {
-          console.log(resp);
+          this.cargando = false;
           Swal.fire('Proyecto creado', `${nombre} creado correctamente`, 'success');
           this.router.navigateByUrl('/dashboard/proyectos');
         });
   }
 
+  onCheckChange(event) {
+    const formArray: FormArray = this.proyectoForm.get('met') as FormArray;
+    /* Selected */
+    if(event.target.checked){
+      // Add a new control in the arrayForm
+      formArray.push(new FormControl(event.target.value));
+    }
+    /* unselected */
+    else{
+      // find the unselected element
+      let i: number = 0;
+  
+      formArray.controls.forEach((ctrl: FormControl) => {
+        if(ctrl.value == event.target.value) {
+          // Remove the unselected element from the arrayForm
+          formArray.removeAt(i);
+          return;
+        }
+
+        i++;
+      });
+    }
+  }
 }
