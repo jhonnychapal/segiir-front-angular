@@ -14,10 +14,12 @@
 
 <div class="row" *ngIf="cargando">
     <div class="col-12">
-        <div class="alert alert-info text-center">
-            <h4 class="alert-heading">Cargando</h4>
-            <i class="fa fa-spin fa-refresh fa-2x"></i>
-            <p class="mb-0">Por favor espere</p>
+        <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
         </div>
     </div>
 </div>
@@ -30,7 +32,7 @@
                 <h5 class="card-title">Descripción:</h5>
                 <p class="card-text">{{proyecto.descripcion}}</p>
                 <a [routerLink]="['/dashboard/proyectos', proyecto._id]" class="btn btn-primary mt-2">Detalles del proyecto</a> &nbsp;
-                <button class="btn btn-danger mt-2" (click)="borrarProyecto(proyecto)">Eliminar proyecto</button>
+                <button *ngIf="banderaAdmin"  class="btn btn-danger mt-2" (click)="borrarProyecto(proyecto)">Eliminar proyecto</button>
             </div>
         </div>
     </div>

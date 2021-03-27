@@ -102,7 +102,7 @@ export class UsuarioService {
         );
   }
 
-  cargarUsuarios(desde: number = 0): any{
+  cargarUsuarios(desde: number = 1): any{
     const url = `${ base_url }/usuarios?desde=${ desde }`;
     return this.http.get<CargarUsuario>(url, this.headers);
   }

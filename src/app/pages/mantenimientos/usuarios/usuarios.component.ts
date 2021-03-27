@@ -17,7 +17,7 @@ export class UsuariosComponent implements OnInit {
   public usuarios: Usuario[] = [];
   public usuariosTemp: Usuario[] = [];
 
-  public desde = 0;
+  public desde = 1;
   public cargando = true;
 
   constructor(

@@ -13,10 +13,12 @@
 
 <div class="row" *ngIf="cargando">
     <div class="col-12">
-        <div class="alert alert-info text-center">
-            <h4 class="alert-heading">Cargando</h4>
-            <i class="fa fa-spin fa-refresh fa-2x"></i>
-            <p class="mb-0">Por favor espere</p>
+        <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
         </div>
     </div>
 </div>
@@ -69,7 +71,7 @@
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <!-- <div class="text-sm text-gray-900">{{usuario.admin}}</div> -->
                                                 <select class="form-control" [(ngModel)]="usuario.admin" (change)="cambiarRol(usuario)">
-                                                    <option  value=true>Admin</option>
+                                                    <option  value=true>Administrador</option>
                                                     <option  value=false>Usuario</option>
                                                 </select>
                                             </td>
@@ -86,16 +88,21 @@
                                                 <a class="text-indigo-600 hover:text-indigo-900 cursor" (click)="eliminarUsuario(usuario)">Eliminar</a>
                                             </td>
                                         </tr>
-
                                         <!-- More items... -->
                                     </tbody>
 
                                 </table>
                             </div>
                             <div *ngIf="txtTermino.value.length === 0">
-                                <button (click)="cambiarPagina(-5)" class="btn btn-outline-secondary mt-3">Anterior</button> &nbsp;
-                                <button (click)="cambiarPagina(5)" class="btn btn-outline-secondary mt-3">Siguiente</button> &nbsp;
-                                <h4 class="card-title"> Total de usuarios ({{ totalUsuarios }})</h4>
+                                <div *ngIf="desde ===  1; else habilitarAnterior">
+                                    <button (click)="cambiarPagina(-5)" class="btn btn-outline-secondary mt-3" disabled="true" >Anterior</button> &nbsp;
+                                    <button (click)="cambiarPagina(5)" class="btn btn-outline-secondary mt-3">Siguiente</button> &nbsp;
+                                </div>
+                                <ng-template #habilitarAnterior>
+                                    <button (click)="cambiarPagina(-5)" class="btn btn-outline-secondary mt-3">Anterior</button> &nbsp;
+                                    <button (click)="cambiarPagina(5)" class="btn btn-outline-secondary mt-3">Siguiente</button> &nbsp;
+                                </ng-template>
+                                <h4 class="card-title"> Total de usuarios ({{ totalUsuarios -1 }})</h4>
 
                             </div>
                         </div>

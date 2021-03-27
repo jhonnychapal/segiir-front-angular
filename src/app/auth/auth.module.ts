@@ -7,12 +7,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { SharedModule } from '../shared/shared.module';
+import { RequestResetComponent } from './request-reset/request-reset.component';
+import { ResponseResetComponent } from './response-reset/response-reset.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
+    RequestResetComponent,
+    ResponseResetComponent,
   ],
   exports: [
     LoginComponent,
