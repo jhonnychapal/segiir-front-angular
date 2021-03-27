@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-pefil',
   templateUrl: './perfil.component.html',
-  styles: [
+  styleUrls: [ './perfil.component.css'
   ]
 })
 export class PerfilComponent implements OnInit {
