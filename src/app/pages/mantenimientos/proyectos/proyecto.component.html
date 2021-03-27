@@ -39,7 +39,7 @@
                     <div *ngFor="let usuario of usuarios; let i=index">
                         <label>
                           <input type="checkbox" value={{usuario.uid}} (change)="onCheckChange($event)">
-                          {{usuario.nombre}}
+                          {{usuario.nombre}} {{usuario.apellido}}
                         </label>
                       </div>
                     <!-- <div class="form-control" *ngFor="let usuario of usuarios">

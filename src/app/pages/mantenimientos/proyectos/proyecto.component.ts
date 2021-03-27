@@ -34,8 +34,8 @@ export class ProyectoComponent implements OnInit {
     this.proyectoForm = new FormGroup({ 
     });
     this.proyectoForm = this.fb.group({
-      nombre: ['Proyecto', Validators.required],
-      descripcion: ['Descripción', Validators.required],
+      nombre: ['', Validators.required],
+      descripcion: ['', Validators.required],
       director: ['', Validators.required],
       met: new FormArray([], Validators.required),
       //met: [[], Validators.required],
