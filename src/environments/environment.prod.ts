@@ -2,5 +2,5 @@
 
 export const environment = {
   production: true,
-  base_url: 'https://backend-segiir.herokuapp.com/api'
+  base_url: 'https://segiir.herokuapp.com/api'
 };
