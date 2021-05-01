@@ -18,11 +18,11 @@ export class RegisterComponent {
   public formSubmitted = false;
 
   public registerForm = this.fb.group({
-    nombre: ['Jhonny', Validators.required],
-    apellido: ['Chapal', Validators.required],
-    email: ['test20@gmail.com', [Validators.required, Validators.email]],
-    password: ['1234', Validators.required],
-    password2: ['1234', Validators.required],
+    nombre: ['', Validators.required],
+    apellido: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', Validators.required],
+    password2: ['', Validators.required],
     admin: [ false, Validators.required],
     estado: [ true, Validators.required],
   },
